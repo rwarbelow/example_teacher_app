@@ -1,0 +1,20 @@
+<h1>Welcome to the SWOTBot, <%= @user.first_name %> <%= @user.last_name %>!</h1>
+<% @user.roles.each do |role| %>
+<a href='/<%= role.type %>/<%= @user.id %>'>My <%= role.type %> Dashboard</a>
+<% end %>
+
+<h2>Upcoming SWOT Events</h2>
+<% if @events %>
+	<table>
+	<% @events.each do |event| %>
+		<tr>
+			<td><%= event.date %></td>
+			<td><%= event.time %></td>
+			<td><%= event.title %></td>
+			<td><%= event.location %></td>
+		</tr>
+	<% end %>
+	<% else %>
+	<p>No upcoming events</p>
+	</table>
+	<% end %>

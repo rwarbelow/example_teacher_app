@@ -1,0 +1,37 @@
+<h1>Welcome, <%= @parent.first_name %> <%= @parent.last_name %>!</h1>
+<% if @parent.roles.first.parent_profile == nil %>
+	<h1 class="errors">Please fill out the following information before continuing.</h1>
+	<div class="form_box">
+		<form action="/ParentRole/parent_profile/<%= @parent.id %>" method="post">
+			<select name="preferred_language">
+        <option value="">Preferred Language</option>
+        <option value="English" >English</option>
+        <option value="Spanish">Spanish</option>
+        <option value="Other">Other</option>
+      </select>
+		  <select name="relationship_to_student">
+        <option value="">Relationship to Student</option>
+        <option value="Mom" >Mom</option>
+        <option value="Dad">Dad</option>
+        <option value="Grandma">Grandma</option>
+        <option value="Grandpa">Grandpa</option>
+        <option value="Aunt">Aunt</option>
+        <option value="Uncle">Uncle</option>
+        <option value="Stepmom">Stepmom</option>
+        <option value="Stepdad">Stepdad</option>
+        <option value="Sibling">Sibling</option>
+        <option value="Other">Other</option>
+      </select>
+      <input type="submit" value="Submit">
+		</form>
+	</div>
+<% else %>
+	<div class="form_box">
+		<h2>Add a student to this account</h2>
+		<p>Enter your student's ID number to link accounts</p>
+		<form action="/ParentRole/<%= @parent.id %>/add_student" method="post">
+		  <input type="text" name="ccsd_id" placeholder="Student ID Number">
+		  <input type="submit" value="Add Student">
+		</form>
+	</div>
+<% end %>

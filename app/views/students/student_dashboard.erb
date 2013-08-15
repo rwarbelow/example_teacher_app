@@ -1,0 +1,36 @@
+</script>
+  <script>
+  $(function() {
+    $( "#datepicker" ).datepicker();
+  });
+  </script>
+
+<h1>Welcome, <%= @student.first_name %> <%= @student.last_name %>!</h1>
+
+
+<% if @student.roles.first.student_profile == nil %>
+	<h1 class="errors">Please fill out the following information before continuing.</h1>
+	<div class="form_box">
+		<form action="/StudentRole/student_profile/<%= @student.id %>" method="post">
+    <input type="text" id="datepicker" name="birthday" placeholder="Birthday">
+    <input type="text" name="address" placeholder="Street Address">
+    <input type="text" name="ccsd_id" placeholder="Student ID Number">
+    <select name="gender">
+      <option value="">Gender</option>
+      <option value="Female" >Female</option>
+      <option value="Male">Male</option>
+    </select>
+    <select name="grade_level">
+      <option value="">Grade Level</option>
+      <option value="6" >6</option>
+      <option value="7">7</option>
+      <option value="8">8</option>
+    </select>
+    <input type="submit" value="Submit">
+		</form>
+	</div>
+<% else %>
+	<p>You are ready to go!</p>
+<% end %>
+
+  

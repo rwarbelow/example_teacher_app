@@ -1,0 +1,58 @@
+<h1>Welcome, <%= @teacher.first_name %> <%= @teacher.last_name %>!</h1>
+<% if @teacher.roles.first.teacher_profile == nil %>
+	<h1 class="errors">Please fill out the following information before continuing.</h1>
+	<div class="form_box">
+		<form action="/TeacherRole/teacher_profile/<%= @teacher.id %>" method="post">
+    <select name="title">
+      <option value="">Title</option>
+      <option value="Math Teacher" >Math Teacher</option>
+      <option value="English Teacher">English Teacher</option>
+      <option value="Science Teacher">Science Teacher</option>
+      <option value="History Teacher">History Teacher</option>
+      <option value="Electives Teacher">Electives Teacher</option>
+      <option value="Program Leader">Program Leader</option>
+    </select>
+    <input type="submit" value="Submit">
+		</form>
+	</div>
+<% else %>
+	<% if @errors %>
+	<% @errors.each do |error| %>
+		<%= error %>
+	<% end %>
+<% end %>
+
+<div class="form_box">
+	<h2>Create a New Course</h2>
+	<form action="/teachers/courses/new_course/<%= @teacher.id %>" method="post">
+	  <input type="text" name="course[title]" placeholder="Course Title">
+	  <input type="text" name="course[grade_level]" placeholder="Grade Level">
+	  <input type="submit" value="Add Course">
+	</form>
+</div>
+
+<div class="form_box">
+	<h2>Your Courses</h2>
+	<% if @teacher.roles.first.teacher_profile.has_courses? %>
+		<table>
+			<thead>
+				<th>Teacher</th>
+				<th>Grade Level</th>
+				<th>Course Name</th>
+			</thead>
+				<% @teacher.roles.first.teacher_profile.courses.each do |course| %>
+				<tr>
+					<td><%= course.teacher.last_name %></td>
+					<td><%= course.grade_level %></td>
+					<td><a href='/TeacherRole/<%= @teacher.id %>/courses/<%= course.id %>'><%= course.title %> </a></td>
+				</tr>
+			<% end %>
+		</table>
+		<% else %>
+		<p>You have no courses currently listed.</p>
+		<% end %>
+</div>
+
+
+<% end %>
+

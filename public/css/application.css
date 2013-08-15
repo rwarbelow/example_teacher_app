@@ -1,0 +1,24 @@
+.container {
+  margin: 20px auto;
+  width: 700px;
+  padding: 0px 20px 20px 20px;
+  border: 1px dotted black;
+}
+th {
+  text-align: left;
+}
+
+.crop {
+	float: right;
+	width: 200px;
+}
+.crop img {
+    width: 70%;
+    height: 70%;
+    float: right;
+}
+
+
+.errors {
+	color: red;
+}

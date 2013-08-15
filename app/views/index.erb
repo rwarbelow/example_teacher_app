@@ -1,0 +1,40 @@
+<div class="container">
+  <h1>THE SWOTBOT</h1>
+  <div class="crop">
+  <img src="http://fc07.deviantart.net/fs71/f/2012/005/d/c/fancy_potato___disguised_by_otaku_bo-d4ld41w.jpg" alt="">
+  </div>
+  <div class="errors">
+  <% if @errors %>
+    <% @errors.each do |error| %>
+      <%= error %>
+    <% end %>
+  <% end %>
+  </div>
+<div class="logins">
+  <h3>User Login</h3>
+  <form action="/login" method="POST">
+    <input type="text" name="username" placeholder="Username">
+    <input type="password" name="password" placeholder="Password">
+    <input type="submit" value="Log in!">
+  </form>
+
+  <h3>Create Account</h3>
+  <form action="/create_user" method="POST" id="create_user">
+    <input type="text" name="first_name" placeholder="First Name">
+    <input type="text" name="last_name" placeholder="Last Name">
+    <input type="text" name="username" placeholder="Username">
+    <input type="text" name="email" placeholder="Email">
+    <input type="tel" pattern='\d{10}' name="cell_phone" placeholder="Cell Phone ">
+    <input type="password" name="password" placeholder="Password">
+    <input type="password" name="password_confirmation" placeholder="Retype Password">
+    <select name="role">
+      <option value="">Account Type</option>
+      <option value="ParentRole" >Parent</option>
+      <option value="StudentRole">Student</option>
+      <option value="TeacherRole">Teacher</option>
+    </select>
+    <input type="submit" value="Create Account">
+  </form>
+  </div>
+
+</div>
